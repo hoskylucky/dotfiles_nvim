@@ -11,6 +11,9 @@ in
     ninja
     (pkgs.lib.hiPrio clang)
     lldb
+    clang-tools
+    zip
+    pkg-config
   ] ++ (pkgs.lib.optionals pkgs.stdenv.isLinux [
     gdb
     mold
