@@ -29,11 +29,11 @@ in
       ];
       extra-substituters = lib.mkAfter [
         "https://nix-community.cachix.org"
-        "https://williamhsieh.cachix.org"
+        "https://mengge.cachix.org"
       ];
       extra-trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "williamhsieh.cachix.org-1:t3jW1IF+bHXN4Ce7ZZe9pLSjRB6D1gwz0EgGdgYxHNg="
+        "mengge.cachix.org-1:klGN7Qov5KSxUxZl4W47D402iutz0Z8RSE7UedWO9vk="
       ];
     };
   };
