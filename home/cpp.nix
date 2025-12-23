@@ -7,12 +7,12 @@ in
 {
   home.packages = with pkgs; [
     gcc
-    clang
     gnumake
     ninja
+    (pkgs.lib.hiPrio clang)
+    lldb
   ] ++ (pkgs.lib.optionals pkgs.stdenv.isLinux [
     gdb
-    lldb
     mold
   ]);
 
@@ -21,7 +21,7 @@ in
     ${clangdConfig}.source = yamlFormat.generate "config.yaml" {
       CompileFlags = {
         Add = [ "-Wall" "-Wextra" "-Wshadow" "-std=c++23" ];
-        Compiler = "${pkgs.gcc}/bin/clang++";
+        Compiler = "${pkgs.clang}/bin/clang++";
       };
     };
   };
