@@ -12,8 +12,13 @@ in
     (pkgs.lib.hiPrio clang)
     lldb
     clang-tools
+    cmake
     zip
     pkg-config
+    nasm
+    libtool
+    autoconf
+    automake
   ] ++ (pkgs.lib.optionals pkgs.stdenv.isLinux [
     gdb
     mold
