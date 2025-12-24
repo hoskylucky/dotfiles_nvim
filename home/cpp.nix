@@ -9,9 +9,8 @@ in
     gcc
     gnumake
     ninja
-    (pkgs.lib.hiPrio clang)
+    (pkgs.lib.hiPrio llvmPackages_20.clangUseLLVM)
     lldb
-    clang-tools
     cmake
     zip
     pkg-config
@@ -19,6 +18,8 @@ in
     libtool
     autoconf
     automake
+    zlib
+    zlib.dev
   ] ++ (pkgs.lib.optionals pkgs.stdenv.isLinux [
     gdb
     mold
