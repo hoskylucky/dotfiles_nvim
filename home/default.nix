@@ -140,6 +140,7 @@ in
       # NOTE: https://github.com/NixOS/nixpkgs/issues/206242
       # LIBRARY_PATH = "${pkgs.iconv}/lib";
       LIBRARY_PATH = "${config.home.profileDirectory}/lib";
+      ACLOCAL_PATH = "${config.home.profileDirectory}/share/aclocal";
     };
 
     activation = {

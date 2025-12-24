@@ -9,7 +9,7 @@ in
     gcc
     gnumake
     ninja
-    (pkgs.lib.hiPrio llvmPackages_20.clangUseLLVM)
+    (pkgs.lib.hiPrio clang)
     lldb
     cmake
     zip
