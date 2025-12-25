@@ -29,7 +29,7 @@ return {
     "--fallback-style=google",
     "--function-arg-placeholders=false",
     "--completion-style=detailed",
-    "--query-driver=/nix/store/*gcc-wrapper*/bin/g++",
+    "--query-driver=/nix/store/*clang*/bin/clang++",
   },
   init_options = {
     usePlaceholders = true,

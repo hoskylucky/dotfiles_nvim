@@ -10,6 +10,9 @@ in
     gnumake
     ninja
     (pkgs.lib.hiPrio clang)
+    libcxx
+    libcxx.dev
+    clang-tools
     lldb
     cmake
     zip
