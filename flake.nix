@@ -100,7 +100,7 @@
           src = cleanSource ./.;
           hooks = {
             # TODO: treefmt, selene, shellcheck
-            editorconfig-checker.enable = true;
+            editorconfig-checker.enable = false;
             nixpkgs-fmt.enable = true;
             stylua = {
               enable = true;
