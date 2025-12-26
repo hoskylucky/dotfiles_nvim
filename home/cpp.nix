@@ -6,34 +6,13 @@ let
 in
 {
   home.packages = with pkgs; [
-    gcc
-    gnumake
-    ninja
-    (pkgs.lib.hiPrio clang)
-    libcxx
-    libcxx.dev
-    clang-tools
-    lldb
-    cmake
-    zip
-    pkg-config
-    nasm
-    libtool
-    autoconf
-    automake
-    zlib
-    zlib.dev
-  ] ++ (pkgs.lib.optionals pkgs.stdenv.isLinux [
-    gdb
-    mold
-  ]);
+  ];
 
   xdg.configFile = {
     # https://clangd.llvm.org/config.html
     ${clangdConfig}.source = yamlFormat.generate "config.yaml" {
       CompileFlags = {
         Add = [ "-Wall" "-Wextra" "-Wshadow" "-std=c++23" ];
-        Compiler = "${pkgs.clang}/bin/clang++";
       };
     };
   };

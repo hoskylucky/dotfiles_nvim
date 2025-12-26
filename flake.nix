@@ -115,6 +115,8 @@
           inherit (self.checks.${system}.pre-commit-check) shellHook;
           buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
         };
+        clang = import ./nix/shell/clang.nix { pkgs = pkgsBySystem.${system}; };
+        gcc = import ./nix/shell/gcc.nix { pkgs = pkgsBySystem.${system}; };
       });
     };
 }
