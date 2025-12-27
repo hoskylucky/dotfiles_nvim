@@ -1,16 +1,21 @@
 { pkgs ? import <nixpkgs> { } }:
 let
-  stdenv = pkgs.llvmPackages_latest.libcxxStdenv;
+  stdenv = pkgs.clangStdenv;
 in
 pkgs.mkShell.override { inherit stdenv; } {
   packages = with pkgs; [
-    llvmPackages_latest.clang-tools
+    clang
+    clang-tools
     cmake
     ninja
     lldb
+    zip
+    pkg-config
+    nasm
+    libtool
+    autoconf
+    automake
+    zlib.dev
   ];
-
-  # 显式设置环境变量以确保某些工具能找到正确的头文件（虽然 stdenv 应该处理大部分）
-  CPATH = "${pkgs.llvmPackages_latest.libcxx.dev}/include/c++/v1";
 }
 

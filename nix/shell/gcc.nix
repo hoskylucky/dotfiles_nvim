@@ -3,10 +3,17 @@
 pkgs.mkShell {
   packages = with pkgs; [
     gcc
-    gdb
     gnumake
-    cmake
     ninja
+    clang-tools
+    cmake
+    zip
+    pkg-config
+    nasm
+    libtool
+    autoconf
+    automake
+    zlib.dev
     valgrind # 内存调试工具，GCC 开发常配套使用
   ];
 }
