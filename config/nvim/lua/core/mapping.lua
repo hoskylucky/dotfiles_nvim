@@ -14,34 +14,36 @@
 ---@param rhs string|function
 ---@param opt? table|string
 local function map(mode, lhs, rhs, opt)
-  -- NOTE: <cmd> are different from ":"
-  if not opt or type(opt) == "string" then
-    opt = { silent = true, desc = opt }
-  end
-  vim.keymap.set(mode, lhs, rhs, opt)
+    -- NOTE: <cmd> are different from ":"
+    if not opt or type(opt) == "string" then
+        opt = { silent = true, desc = opt }
+    end
+    vim.keymap.set(mode, lhs, rhs, opt)
 end
 
 local function yank()
-  if vim.fn.mode() == "n" then
-    vim.cmd("%y")
-  else
-    vim.cmd("normal! y")
-  end
-
-  local script_path = vim.fn.expand("~/.config/dotfiles/config/zsh/autoload/yank")
-  vim.system({ script_path }, { stdin = vim.fn.getreg("0") }, function(result)
-    if result.code == 0 then
-      vim.notify("copied to clipboard")
+    if vim.fn.mode() == "n" then
+        vim.cmd("%y")
     else
-      local error_msg = result.stderr ~= "" and result.stderr or result.stdout
-      vim.notify("Failed to copy: " .. (error_msg or "unknown error"), vim.log.levels.ERROR)
+        vim.cmd("normal! y")
     end
-  end)
+
+    local script_path = vim.fn.expand("~/.config/dotfiles/config/zsh/autoload/yank")
+    vim.system({ script_path }, { stdin = vim.fn.getreg("0") }, function(result)
+        if result.code == 0 then
+            vim.notify("copied to clipboard")
+        else
+            local error_msg = result.stderr ~= "" and result.stderr or result.stdout
+            vim.notify("Failed to copy: " .. (error_msg or "unknown error"), vim.log.levels.ERROR)
+        end
+    end)
 end
 
 --}}}
 
 -- <leader>: normal mode{{{
+-- <leader>w: save
+map({ "n", "i", "v" }, "<C-s>", "<cmd>up<cr>", "Save")
 map("n", "<leader>w", "<cmd>up<cr>", "Save")
 map("n", "<leader>q", "<cmd>q<cr>", "Quit")
 map("n", "<leader>y", yank, "copy to clipboard")
@@ -54,7 +56,7 @@ map("n", "<leader>b>", "<cmd>BufferLineMoveNext<cr>", "Move right")
 map("n", "<leader>b<", "<cmd>BufferLineMovePrev<cr>", "Move left")
 map("n", "<leader>bs", "<cmd>so %|lua vim.notify('Buffer sourced.')<cr>", "Source this buffer")
 map("n", "<leader>bz", function()
-  require("snacks").zen()
+    require("snacks").zen()
 end, "Zen mode")
 map("n", "<leader>br", "<cmd>%s/.*/mv & &/<cr>", "bulk rename")
 map("n", "<leader>bf", "<cmd>FSToggle<cr>", "Flow state reading toggle")
@@ -115,7 +117,7 @@ map("n", "]d", vim.diagnostic.goto_next, "next diagnostic")
 map("n", "[d", vim.diagnostic.goto_prev, "prev diagnostic")
 map("n", "<leader>lp", "<cmd>Lspsaga peek_definition<cr>", "preview definition")
 map("n", "<leader>lo", function()
-  require("dropbar.api").pick()
+    require("dropbar.api").pick()
 end, "Outline(pick from dropbar)")
 map("n", "<leader>lO", "<cmd>SymbolsOutline<cr>", "Outline(SymbolsOutline)")
 map("n", "<leader>lq", vim.diagnostic.setloclist, "Quickfix")
@@ -129,11 +131,11 @@ map("t", "<esc>", [[<C-\><C-n>]])
 map("n", [[<c-\>]], "<cmd>ToggleTerm<cr>", "Toggleterm")
 
 map("n", "<leader>tt", function()
-  local cmd = "ToggleTerm"
-  if vim.bo.filetype ~= "toggleterm" then
-    cmd = vim.fn.bufnr() .. cmd
-  end
-  vim.cmd(cmd)
+    local cmd = "ToggleTerm"
+    if vim.bo.filetype ~= "toggleterm" then
+        cmd = vim.fn.bufnr() .. cmd
+    end
+    vim.cmd(cmd)
 end, "Float terminal for each buffer")
 
 map("n", [[<leader>tf]], "<cmd>ToggleTerm direction=float<cr>", "Float")
