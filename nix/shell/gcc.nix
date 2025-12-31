@@ -1,6 +1,7 @@
 { pkgs ? import <nixpkgs> { } }:
 
 pkgs.mkShell {
+  hardeningDisable = [ "fortify" ];
   packages = with pkgs; [
     gcc
     gnumake

@@ -3,6 +3,7 @@ let
   stdenv = pkgs.clangStdenv;
 in
 pkgs.mkShell.override { inherit stdenv; } {
+  hardeningDisable = [ "fortify" ];
   packages = with pkgs; [
     clang
     clang-tools

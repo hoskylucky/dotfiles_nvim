@@ -12,7 +12,7 @@ in
     # https://clangd.llvm.org/config.html
     ${clangdConfig}.source = yamlFormat.generate "config.yaml" {
       CompileFlags = {
-        Add = [ "-Wall" "-Wextra" "-Wshadow" "-std=c++23" ];
+        Add = [ "-Wall" "-Wextra" "-Wpedantic" "-std=c++23" ];
       };
     };
   };
