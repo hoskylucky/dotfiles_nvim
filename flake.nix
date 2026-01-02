@@ -117,6 +117,7 @@
         };
         clang = import ./nix/shell/clang.nix { pkgs = pkgsBySystem.${system}; };
         gcc = import ./nix/shell/gcc.nix { pkgs = pkgsBySystem.${system}; };
+        python = import ./nix/shell/py.nix { pkgs = pkgsBySystem.${system}; };
       });
     };
 }
