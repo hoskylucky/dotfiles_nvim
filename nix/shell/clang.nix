@@ -2,11 +2,12 @@
 let
   stdenv = pkgs.clangStdenv;
 in
-pkgs.mkShell.override { inherit stdenv; } {
+pkgs.mkShell.override { inherit stdenv; } rec {
   hardeningDisable = [ "fortify" ];
   packages = with pkgs; [
     clang
     clang-tools
+    bintools
     cmake
     ninja
     lldb
@@ -16,7 +17,11 @@ pkgs.mkShell.override { inherit stdenv; } {
     libtool
     autoconf
     automake
-    zlib.dev
+    zlib
   ];
+
+  shellHook = ''
+    export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath (packages ++ [ pkgs.gcc.cc.lib ])}:$LD_LIBRARY_PATH"
+  '';
 }
 
