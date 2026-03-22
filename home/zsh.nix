@@ -109,6 +109,14 @@ in
     pkgs.zsh-forgit
   ];
 
+  home.sessionVariables = {
+    BUN_INSTALL = "${config.home.homeDirectory}/.bun";
+  };
+
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.bun/bin"
+  ];
+
   programs.zsh = {
     enable = true;
     history = {

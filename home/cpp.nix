@@ -6,6 +6,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    clang-tools
   ];
 
   xdg.configFile = {
